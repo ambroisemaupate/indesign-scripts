@@ -221,23 +221,23 @@ function styleOptionDialog() {
 function markdown(target, styles) {
   var replacements = [{
     name:     'Heading 5',
-    find:     { findWhat: '^#####\\s+(.+)\\s+$' },
+    find:     { findWhat: '^[\\#]{5}[\s]*(.+)$' },
     change:   { changeTo: "$1\r", appliedParagraphStyle: styles.h5 }
   },{
     name:     'Heading 5',
-    find:     { findWhat: '^####\\s+(.+)\\s+$' },
+    find:     { findWhat: '^[\\#]{4}[\s]*(.+)$' },
     change:   { changeTo: "$1\r", appliedParagraphStyle: styles.h4 }
   },{
     name:     'Heading 3',
-    find:     { findWhat: '^###\\s+(.+)\\s+$' },
+    find:     { findWhat: '^[\\#]{3}[\s]*(.+)$' },
     change:   { changeTo: "$1\r", appliedParagraphStyle: styles.h3 }
   }, {
     name:     'Heading 2',
-    find:     { findWhat: '^##\\s+(.+)\\s+$' },
+    find:     { findWhat: '^[\\#]{2}[\s]*(.+)$' },
     change:   { changeTo: "$1\r", appliedParagraphStyle: styles.h2 }
   }, {
     name:     'Heading 1',
-    find:     { findWhat: '^#\\s+(.+)\\s+$' },
+    find:     { findWhat: '^[\\#]{1}[\s]*(.+)$' },
     change:   { changeTo: "$1\r", appliedParagraphStyle: styles.h1 }
   }, {
     name:     'Ordered List',
