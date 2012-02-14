@@ -98,6 +98,22 @@ function styleOptionDialog() {
               selectedIndex: fuzzyIndex(paragraphStyleNames, '(H3)'),
               minWidth: minWidth
             });
+            
+            staticTexts.add({ staticLabel: 'Heading 4 (H4)' });
+
+            selected.h4 = dropdowns.add({
+              stringList: paragraphStyleNames,
+              selectedIndex: fuzzyIndex(paragraphStyleNames, '(H4)'),
+              minWidth: minWidth
+            });
+            
+            staticTexts.add({ staticLabel: 'Heading 5 (H5)' });
+
+            selected.h5 = dropdowns.add({
+              stringList: paragraphStyleNames,
+              selectedIndex: fuzzyIndex(paragraphStyleNames, '(H5)'),
+              minWidth: minWidth
+            });
           }
         }
       }
@@ -120,6 +136,14 @@ function styleOptionDialog() {
             selected.ul = dropdowns.add({
               stringList: paragraphStyleNames,
               selectedIndex: fuzzyIndex(paragraphStyleNames, '(UL)'),
+              minWidth: minWidth
+            });
+            
+            staticTexts.add({ staticLabel: 'Blockquote (BL)' });
+        
+            selected.bl = dropdowns.add({
+              stringList: paragraphStyleNames,
+              selectedIndex: fuzzyIndex(paragraphStyleNames, '(BL)'),
               minWidth: minWidth
             });
           }
@@ -164,9 +188,12 @@ function styleOptionDialog() {
     styles.h1     = paragraphStyles[selected.h1.selectedIndex];
     styles.h2     = paragraphStyles[selected.h2.selectedIndex];
     styles.h3     = paragraphStyles[selected.h3.selectedIndex];
+    styles.h4     = paragraphStyles[selected.h4.selectedIndex];
+    styles.h5     = paragraphStyles[selected.h5.selectedIndex];
     
     styles.ol     = paragraphStyles[selected.ol.selectedIndex];
     styles.ul     = paragraphStyles[selected.ul.selectedIndex];
+    styles.bl     = paragraphStyles[selected.bl.selectedIndex];
     
     styles.em     = characterStyles[selected.em.selectedIndex];
     styles.strong = characterStyles[selected.strong.selectedIndex];
@@ -193,6 +220,14 @@ function styleOptionDialog() {
 
 function markdown(target, styles) {
   var replacements = [{
+    name:     'Heading 5',
+    find:     { findWhat: '^#####\\s+(.+)\\s+$' },
+    change:   { changeTo: "$1\r", appliedParagraphStyle: styles.h5 }
+  },{
+    name:     'Heading 5',
+    find:     { findWhat: '^####\\s+(.+)\\s+$' },
+    change:   { changeTo: "$1\r", appliedParagraphStyle: styles.h4 }
+  },{
     name:     'Heading 3',
     find:     { findWhat: '^###\\s+(.+)\\s+$' },
     change:   { changeTo: "$1\r", appliedParagraphStyle: styles.h3 }
@@ -213,12 +248,16 @@ function markdown(target, styles) {
     find:     { findWhat: '^[-\\*\\+]\\s+(.+)$' },
     change:   { changeTo: "$1", appliedParagraphStyle: styles.ul }
   }, {
+    name:     'Blockquote',
+    find:     { findWhat: '^[\\>]\\s+(.+)$' },
+    change:   { changeTo: "$1", appliedParagraphStyle: styles.bl }
+  }, {
     name:     'Strong',
-    find:     { findWhat: '__([^_]+)__' },
+    find:     { findWhat: '[_|\\*]{2}([^_|^\\*]+)[_|\\*]{2}' },
     change:   { changeTo: '$1', appliedCharacterStyle: styles.strong }
   }, {
     name:     'Emphasized',
-    find:     { findWhat: '_([^_]+)_' },
+    find:     { findWhat: '[_|\\*]{1}([^_|^\\*]+)[_|\\*]{1}' },
     change:   { changeTo: '$1', appliedCharacterStyle: styles.em }
   }, {
     name:     'Code',
