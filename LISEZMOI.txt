@@ -1,0 +1,21 @@
+# Markdown script pour InDesign
+---------------------------------------------------
+# Installation
+
+1. Télécharger le fichier markdown.jsx
+2. Lancer l'application InDesign
+3. Ouvrir la fenêtre Scripts (Fenêtres > Utilitaires > Scripts)
+4. Choisir le dossier Utilisateur et cliquer sur Faire apparaître dans le Finder (Menu contextuel de la fenêtre)
+
+5. Copier le fichier téléchargé dans le dossier "Scripts Panel"
+6. Maintenant le script devrait apparaître dans la fenêtre Script d'InDesign.
+
+---------------------------------------------------
+# Utilisation
+
+1. Créer un nouveau document
+2. Copier votre markdown dans un bloc de texte
+3. Lancer le script markdown.jsx depuis la fenêtre Scripts
+5. Choisissez la portée du script (Sélection courant ou le document entier)
+4. Connecter chaque entité Markdown avec vos styles de caractère et paragraphe préexistants
+5. C'est parti !
